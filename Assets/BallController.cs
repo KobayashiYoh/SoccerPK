@@ -36,8 +36,11 @@ public class BallController : MonoBehaviour
                     if (shootPower > 189) {
                         shootPower = 189;
                     }
-                    Vector3 shootDirection = -clickPosition.normalized;
-                    ballRigidbody.AddForce(shootDirection * shootPower, ForceMode.Impulse);
+                    Vector3 shootDirection = clickPosition.normalized;
+                    if (shootDirection.z < 0) {
+                        shootDirection = -shootDirection;
+                    }
+                    ballRigidbody.AddForce(shootDirection * shootPower * 5, ForceMode.Impulse);
                 }
             }
         }
